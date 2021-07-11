@@ -7,37 +7,35 @@ function resize(size) {
         div = document.createElement('div');
         div.classList.add('box');
         container.appendChild(div);
+        container.style.gridTemplateRows = "repeat(" + Math.sqrt(size) + ", 1fr)";
+        container.style.gridTemplateColumns = "repeat(" + Math.sqrt(size) + ", 1fr)";
     }
-}
-resize(size)
-let allDivs = document.querySelectorAll(".box");
-// add color on hover
-function hover() {
+    let allDivs = document.querySelectorAll(".box");
+    // add color on hover
     for (i = 0; i < allDivs.length; i++) {
         allDivs[i].addEventListener('mouseover', (event)=>{
-            event.target.style.backgroundColor = "#000000"
+            event.target.style.backgroundColor = "#000000";
         })
     }
 }
-hover();
+resize(size)
+
 
 
 // add resize button functionality
 const change = document.querySelector("#change");
 change.addEventListener('click', ()=>{
     let answer = prompt('How wide should the new area be?')
-    if (answer > 100) {
+    if (answer > 50) {
         alert('Too large. Try again.');
         return;
     }
     let newSize = answer * answer;
     container.innerHTML = ''
-    // document.querySelector(".div-container").style.gridTemplateColumns = "repeat(8, 1fr) !important;"
-    // document.querySelector(".divContainer").style.gridTemplateColumns = "repeat(8, 1fr) !important;"
     resize(newSize);
-    hover();
+
 })
 
 
 //need to get hover working on resize
-//need to get resize working with rows columns/height width
+//need to get resize working with height width
